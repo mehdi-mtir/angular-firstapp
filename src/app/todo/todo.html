@@ -1,0 +1,6 @@
+<h1>Liste des tâches à faire :</h1>
+<ul>
+    @for (todo of todos; track todo.id) {
+        @if(todo.state != "done"){<li>{{todo.task}}</li>}
+    }
+</ul>

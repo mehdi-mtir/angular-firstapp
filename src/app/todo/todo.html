@@ -1,6 +1,74 @@
-<h1>Liste des tâches à faire :</h1>
-<ul>
+<header>
+    <h2>Liste des tâches à faire :</h2>
+</header>
+<section id="addSection">
+    <button class="btn btn-primary" 
+        (click)="setAction('add')">
+        Ajouter une tâche
+    </button>
+    @if(action == "add"){
+    <form id="addForm">
+        <div class="mb-3">
+            <label for="task" class="form-label">Tâche</label>
+            <input type="text" class="form-control" id="task" #task>
+        </div>
+        <button type="button" class="btn btn-primary" 
+            (click)="addTask(task.value)">
+            Valider
+        </button>
+    </form>
+    }
+</section>
+
+<section id="editSection">
+
+    @if(action == "edit"){
+    <form id="addForm">
+        <div class="mb-3">
+            <label for="task" class="form-label">Tâche</label>
+            <input type="text" class="form-control" id="task" name="task" [(ngModel)]="taskToEdit.task">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="state" 
+            [checked]="taskToEdit.state == 'done'"
+            (change)="changeState()"
+            >
+            <label class="form-check-label" for="state">Terminber la tâche</label>
+        </div>
+        <button type="button" class="btn btn-primary" 
+            (click)="editTask()">
+            Valider
+        </button>
+    </form>
+    }
+</section>
+
+<section id="listSection">
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tâche</th>
+        <th scope="col">Etat</th>
+        <th scope="col">Editer</th>
+        <th scope="col">Supprimer</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (todo of todos; track todo.id) {
+        <tr>
+            <th scope="row">{{todo.id}}</th>
+            <td>{{todo.task}}</td>
+            <td>{{todo.state}}</td>
+            <td><button class="btn btn-success" (click)="showEditForm(todo)">Editer</button></td>
+            <td><button class="btn btn-danger" (click)="deleteTask(todo.id)">Supprimer</button></td>
+        </tr>
+        }
+    </tbody>
+    </table>
+</section>
+<!--ul>
     @for (todo of todos; track todo.id) {
         @if(todo.state != "done"){<li>{{todo.task}}</li>}
     }
-</ul>
+</ul-->

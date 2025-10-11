@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Child } from "../child/child";
 
 @Component({
   selector: 'app-home',
-  imports: [FormsModule],
+  imports: [FormsModule, Child],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
@@ -15,5 +16,9 @@ export class Home {
   changeLogo = ()=>{
     //console.log("Changing Logo ....")
     this.url = (this.url === this.url1)?this.url2:this.url1;
+  }
+
+  setTitle(updatedTitle : string){
+    this.title = updatedTitle;
   }
 }

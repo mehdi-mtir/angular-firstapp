@@ -1,8 +1,12 @@
 <h1>{{title}}</h1>
-<input [(ngModel)]="title" />
+<input name="title" [(ngModel)]="title" />
 <div>
     <button (click)="changeLogo()">Changer le logo</button>
 </div>
 <div>
     <img [src]="url" />
+</div>
+<div>
+    <h2>Child Component here :</h2>
+    <app-child [titleParam]="title" (titleChanged)="setTitle($event)"></app-child>
 </div>

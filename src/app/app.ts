@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 //import { Home } from "./home/home";
 import { Todo } from "./todo/todo";
+import { Home } from './home/home';
 
 @Component({
   selector: 'app-root',
-  imports: [ Todo],
+  imports: [ Todo, Home],
   templateUrl: './app.html',
   //template : '<h1>App Commponent</h1>', //inline template
   styleUrl: './app.css'
